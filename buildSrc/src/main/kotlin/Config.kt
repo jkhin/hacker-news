@@ -9,7 +9,8 @@ object Config {
 
     object Build {
         const val hackerNewsUrlFieldName = "HACKER_NEWS_API"
-        const val hackerNewsUrlFieldValue = "\"" + "https://hn.algolia.com/api/v1/search_by_date?query=android" + "\""
+//        const val hackerNewsUrlFieldValue = "\"" + "https://hn.algolia.com/api/v1/search_by_date?query=android" + "\""
+        const val hackerNewsUrlFieldValue = "\"" + "https://hn.algolia.com/api/v1/" + "\""
     }
 
 }
