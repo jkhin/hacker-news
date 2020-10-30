@@ -1,6 +1,6 @@
 package io.jk.dev.reign.hackernews.features.news.domain.interactor
 
-import io.jk.dev.reign.hackernews.features.news.domain.model.Hits
+import io.jk.dev.reign.hackernews.features.news.domain.model.News
 import io.jk.dev.reign.hackernews.features.news.domain.repository.NewsRepository
 
 class NewsUseCase(
@@ -11,7 +11,7 @@ class NewsUseCase(
         private const val ENVIRONMENT = "android"
     }
 
-    suspend fun getNews(): List<Hits> = newsRepository.getNewsByDate(ENVIRONMENT)
+    suspend fun getNews(): List<News> = newsRepository.getNewsByDate(ENVIRONMENT)
 
     suspend fun removeNew(objectId: String) = newsRepository.removeNew(objectId)
 

@@ -1,52 +1,49 @@
 package io.jk.dev.reign.hackernews.features.news.data.repository
 
+import io.jk.dev.reign.hackernews.core.utils.NetworkUtils.hasInternetConnection
 import io.jk.dev.reign.hackernews.features.news.data.datasource.database.NewsDataStore
-import io.jk.dev.reign.hackernews.features.news.data.datasource.database.NewsRemovedDataStorage
 import io.jk.dev.reign.hackernews.features.news.data.datasource.database.entity.NewsEntity
 import io.jk.dev.reign.hackernews.features.news.data.datasource.rest.NewsCloudStore
-import io.jk.dev.reign.hackernews.features.news.data.datasource.rest.response.NewsResponse
 import io.jk.dev.reign.hackernews.features.news.data.mapper.NewsEntityMapper
-import io.jk.dev.reign.hackernews.features.news.data.mapper.HitsMapper
-import io.jk.dev.reign.hackernews.features.news.domain.model.Hits
+import io.jk.dev.reign.hackernews.features.news.data.mapper.NewsMapper
+import io.jk.dev.reign.hackernews.features.news.domain.model.News
 import io.jk.dev.reign.hackernews.features.news.domain.repository.NewsRepository
 
 class NewsRepositoryImpl(
     private val newsCloudStore: NewsCloudStore,
     private val newsDataStore: NewsDataStore,
-    private val removedNewsDataStore: NewsRemovedDataStorage,
-    private val hitsEntityMapper: NewsEntityMapper,
-    private val hitsMapper: HitsMapper
+    private val newsEntityMapper: NewsEntityMapper,
+    private val newsMapper: NewsMapper
 ) : NewsRepository {
 
-    override suspend fun getNewsByDate(environment: String): List<Hits> {
-//        if (hasInternetConnection()) {
-        val response = newsCloudStore.searchNewsByDate(environment)
-        val entities = saveResponseAndGetEntities(response.hits)
-        return hitsMapper.map(entities)
+    override suspend fun getNewsByDate(environment: String): List<News> {
+        return if (hasInternetConnection()) {
+            val response = newsCloudStore.searchNewsByDate(environment)
+            val news = newsEntityMapper.map(response.hits)
+            val newsStored = newsDataStore.getNewsStored()
+            val nonNewsStored = mutableListOf<NewsEntity>()
 
-//        } else {
-//
-//        }
-        // TODO("check if is networking available")
-        // TODO("if it's enabled > get response news")
-        // TODO("else > get news from local-storage")
+            news.forEach { entity ->
+                if (newsStored.firstOrNull { it.objectId == entity.objectId } == null) {
+                    nonNewsStored.add(entity)
+                }
+            }
+            newsDataStore.saveNews(nonNewsStored)
 
-        // TODO("map response news to entity")
-        // TODO("check if it exists in local storage")
-        // TODO("if exists > omit")
-        // TODO("else > save")
-        // TODO("save it to local storage")
-        // TODO("")
+            val entities = newsDataStore.getNonNewsRemoved()
+
+            newsMapper.map(entities)
+        } else {
+            val entities = newsDataStore.getNonNewsRemoved()
+            newsMapper.map(entities)
+        }
     }
 
     override suspend fun removeNew(objectId: String) {
-
+        val news = newsDataStore.getNewsByObjectId(objectId)
+        news.isRemoved = 1
+        newsDataStore.updateRemovedNews(news)
     }
 
-    private suspend fun saveResponseAndGetEntities(hits: List<NewsResponse>): List<NewsEntity> {
-        val entities = hitsEntityMapper.map(hits)
-        // TODO("Save entities to local storage")
-        return entities
-    }
 
 }

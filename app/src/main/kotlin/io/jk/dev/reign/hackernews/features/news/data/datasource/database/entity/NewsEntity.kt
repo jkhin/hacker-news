@@ -36,5 +36,7 @@ data class NewsEntity(
 	@ColumnInfo(name = "tags")
 	val tags: List<String>,
 	@ColumnInfo(name = "objectId")
-	val objectId: String
+	val objectId: String,
+	@ColumnInfo(name = "isRemoved")
+	var isRemoved: Int = 0
 )

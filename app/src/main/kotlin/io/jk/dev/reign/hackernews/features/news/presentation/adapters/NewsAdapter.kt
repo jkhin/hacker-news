@@ -16,6 +16,7 @@ class NewsAdapter(
 
     interface Listener {
         fun goToWebPage(url: String)
+        fun removeNews(objectId: String)
     }
 
     fun clearAndAddAll(items: List<NewsItemModel>) {
@@ -25,6 +26,7 @@ class NewsAdapter(
     }
 
     fun removeAt(position: Int) {
+        listener.removeNews(mLst[position].objectId)
         mLst.removeAt(position)
         notifyItemRemoved(position)
     }

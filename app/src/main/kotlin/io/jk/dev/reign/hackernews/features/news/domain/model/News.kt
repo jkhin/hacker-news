@@ -1,6 +1,6 @@
 package io.jk.dev.reign.hackernews.features.news.domain.model
 
-data class Hits (
+data class News (
 	val createdAt : String,
 	val title : String?,
 	val url : String?,

@@ -107,4 +107,7 @@ class NewsFragment : Fragment(), NewsAdapter.Listener {
 
     }
 
+    override fun removeNews(objectId: String) {
+        newsViewModel.removeNew(objectId)
+    }
 }

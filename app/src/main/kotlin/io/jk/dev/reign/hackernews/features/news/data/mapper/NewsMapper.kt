@@ -4,10 +4,10 @@ import io.jk.dev.reign.hackernews.features.news.data.datasource.database.entity.
 import io.jk.dev.reign.hackernews.features.news.domain.model.*
 
 
-class HitsMapper {
+class NewsMapper {
 
-    fun map(hits: List<NewsEntity>): List<Hits> = hits.map {
-        Hits(
+    fun map(hits: List<NewsEntity>): List<News> = hits.map {
+        News(
             createdAt = it.createdAt,
             title = it.title,
             url = it.url,
