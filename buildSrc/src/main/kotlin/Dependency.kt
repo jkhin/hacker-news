@@ -11,13 +11,12 @@ object Dependency {
         const val appCompat = "androidx.appcompat:appcompat:${Versions.AndroidLib.appCompatVersion}"
         const val androidKTX = "androidx.core:core-ktx:${Versions.AndroidLib.androidxKTXVersion}"
         const val androidLifeCycleViewModel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.AndroidLib.androidLifeCycleViewModelVersion}"
-
-        const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0"
-
         const val androidNavigationFragment =
             "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidLib.androidNavigationVersion}"
         const val androidNavigationUIKt =
             "androidx.navigation:navigation-ui-ktx:${Versions.AndroidLib.androidNavigationVersion}"
+        const val androidxSwipeLayout =
+            "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.AndroidLib.androidxSwipeLayout}"
         const val androidMaterial =
             "com.google.android.material:material:${Versions.AndroidLib.androidMaterialVersion}"
     }

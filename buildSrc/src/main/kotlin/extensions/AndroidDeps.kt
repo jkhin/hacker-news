@@ -9,7 +9,7 @@ fun DependencyHandler.androidLibs() = with(this) {
     androidxKTX()
     constraintLayoutLib()
     appCompatLib()
-    androidRecyclerView()
+    androidxSwipeLayout()
     androidNavigationFragment()
     androidLifeCycleViewModel()
     androidNavigationUIKt()
@@ -40,6 +40,10 @@ fun DependencyHandler.androidNavigationUIKt() = this.add(
     implementation,
     Dependency.Android.androidNavigationUIKt
 )
+fun DependencyHandler.androidxSwipeLayout() = this.add(
+    implementation,
+    Dependency.Android.androidxSwipeLayout
+)
 
 fun DependencyHandler.androidMaterial() = this.add(
     implementation,
@@ -49,9 +53,4 @@ fun DependencyHandler.androidMaterial() = this.add(
 fun DependencyHandler.androidLifeCycleViewModel() = this.add(
     implementation,
     Dependency.Android.androidLifeCycleViewModel
-)
-
-fun DependencyHandler.androidRecyclerView() = this.add(
-    implementation,
-    Dependency.Android.recyclerView
 )

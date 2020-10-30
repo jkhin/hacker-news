@@ -1,9 +1,11 @@
+import constants.implementation
 import extensions.*
 
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-android-extensions")
+    id("androidx.navigation.safeargs")
     id("kotlin-kapt")
 }
 
@@ -11,6 +13,7 @@ android {
 
     compileSdkVersion(Versions.App.compileSdkVersion)
     buildToolsVersion(Versions.App.buildToolsVersion)
+
 
     defaultConfig {
         applicationId = Config.applicationId
@@ -83,8 +86,6 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kotlinLibs()
     androidLibs()
     koinLibs()

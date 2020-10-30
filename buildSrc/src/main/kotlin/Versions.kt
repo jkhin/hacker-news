@@ -15,9 +15,10 @@ object Versions {
         const val constraintLayoutVersion = "1.1.3"
         const val appCompatVersion = "1.2.0"
         const val androidxKTXVersion = "1.3.0"
-        const val androidNavigationVersion = "2.3.0"
+        const val androidNavigationVersion = "2.3.1"
         const val androidMaterialVersion = "1.2.0"
         const val androidLifeCycleViewModelVersion = "2.2.0"
+        const val androidxSwipeLayout = "1.1.0"
     }
 
     object Kotlin {
