@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_web.*
 
 class WebFragment : Fragment() {
 
-    private val args : WebFragmentArgs by navArgs()
+    private val args: WebFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

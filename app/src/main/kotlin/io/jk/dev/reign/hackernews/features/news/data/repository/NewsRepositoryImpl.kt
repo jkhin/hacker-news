@@ -30,7 +30,7 @@ class NewsRepositoryImpl(
             }
             newsDataStore.saveNews(nonNewsStored)
 
-            val entities = newsDataStore.getNonNewsRemoved()
+            val entities = newsDataStore.getNonNewsRemoved().sortedByDescending { it.createdAt }
 
             newsMapper.map(entities)
         } else {
