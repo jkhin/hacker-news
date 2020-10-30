@@ -21,8 +21,8 @@ object Versions {
     }
 
     object Kotlin {
-        const val kotlinVersion = "1.3.72"
-        const val kotlinCoroutinesVersion = "1.3.5"
+        const val kotlinVersion = "1.4.10"
+        const val kotlinCoroutinesVersion = "1.3.9"
     }
 
     object Room {
@@ -52,6 +52,6 @@ object Versions {
     }
 
     object Moshi {
-        const val moshiVersion = "1.9.3"
+        const val moshiVersion = "1.11.0"
     }
 }

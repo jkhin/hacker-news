@@ -12,6 +12,8 @@ object Dependency {
         const val androidKTX = "androidx.core:core-ktx:${Versions.AndroidLib.androidxKTXVersion}"
         const val androidLifeCycleViewModel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.AndroidLib.androidLifeCycleViewModelVersion}"
 
+        const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0"
+
         const val androidNavigationFragment =
             "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidLib.androidNavigationVersion}"
         const val androidNavigationUIKt =

@@ -13,7 +13,8 @@ internal fun injectModules(app: Application) {
     startKoin{
         androidLogger()
         androidContext(app)
-        modules(applicationModules)
+        koin.loadModules(applicationModules)
+        koin.createRootScope()
     }
 }
 
