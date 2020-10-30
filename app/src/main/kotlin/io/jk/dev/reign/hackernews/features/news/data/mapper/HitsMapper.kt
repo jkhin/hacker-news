@@ -19,7 +19,7 @@ class HitsMapper {
             storyUrl = it.storyUrl,
             commentText = it.commentText,
             createdAtI = it.createdAtI,
-            objectID = it.objectID,
+            objectId = it.objectId,
             numComments = it.numComments,
             parentId = it.parentId,
             tags = it.tags

@@ -3,9 +3,9 @@ package io.jk.dev.reign.hackernews.features.news.data.mapper
 import io.jk.dev.reign.hackernews.features.news.data.datasource.database.entity.*
 import io.jk.dev.reign.hackernews.features.news.data.datasource.rest.response.*
 
-class HitsEntityMapper {
+class NewsEntityMapper {
 
-    fun map(hits: List<HitsResponse>): List<NewsEntity> = hits.map {
+    fun map(hits: List<NewsResponse>): List<NewsEntity> = hits.map {
         NewsEntity(
             createdAt = it.createdAt,
             title = it.title,
@@ -18,10 +18,11 @@ class HitsEntityMapper {
             storyUrl = it.storyUrl,
             commentText = it.commentText,
             createdAtI = it.createdAtI,
-            objectID = it.objectID,
+            objectId = it.objectID,
             numComments = it.numComments,
             parentId = it.parentId,
-            tags = it.tags
+            tags = it.tags,
+            id = 0
         )
     }
 

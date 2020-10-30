@@ -15,5 +15,5 @@ data class Hits (
 	val parentId : String?,
 	val createdAtI : Int,
 	val tags : List<String>,
-	val objectID : String
+	val objectId : String
 )

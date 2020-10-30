@@ -4,8 +4,8 @@ import io.jk.dev.reign.hackernews.features.news.data.datasource.database.NewsDat
 import io.jk.dev.reign.hackernews.features.news.data.datasource.database.NewsRemovedDataStorage
 import io.jk.dev.reign.hackernews.features.news.data.datasource.database.entity.NewsEntity
 import io.jk.dev.reign.hackernews.features.news.data.datasource.rest.NewsCloudStore
-import io.jk.dev.reign.hackernews.features.news.data.datasource.rest.response.HitsResponse
-import io.jk.dev.reign.hackernews.features.news.data.mapper.HitsEntityMapper
+import io.jk.dev.reign.hackernews.features.news.data.datasource.rest.response.NewsResponse
+import io.jk.dev.reign.hackernews.features.news.data.mapper.NewsEntityMapper
 import io.jk.dev.reign.hackernews.features.news.data.mapper.HitsMapper
 import io.jk.dev.reign.hackernews.features.news.domain.model.Hits
 import io.jk.dev.reign.hackernews.features.news.domain.repository.NewsRepository
@@ -14,7 +14,7 @@ class NewsRepositoryImpl(
     private val newsCloudStore: NewsCloudStore,
     private val newsDataStore: NewsDataStore,
     private val removedNewsDataStore: NewsRemovedDataStorage,
-    private val hitsEntityMapper: HitsEntityMapper,
+    private val hitsEntityMapper: NewsEntityMapper,
     private val hitsMapper: HitsMapper
 ) : NewsRepository {
 
@@ -43,7 +43,7 @@ class NewsRepositoryImpl(
 
     }
 
-    private suspend fun saveResponseAndGetEntities(hits: List<HitsResponse>): List<NewsEntity> {
+    private suspend fun saveResponseAndGetEntities(hits: List<NewsResponse>): List<NewsEntity> {
         val entities = hitsEntityMapper.map(hits)
         // TODO("Save entities to local storage")
         return entities

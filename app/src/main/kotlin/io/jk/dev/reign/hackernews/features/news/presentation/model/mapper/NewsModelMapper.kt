@@ -7,7 +7,7 @@ import io.jk.dev.reign.hackernews.features.news.presentation.model.NewsItemModel
 class NewsModelMapper {
 
     fun map(hits: Hits) = NewsItemModel(
-        objectId = hits.objectID,
+        objectId = hits.objectId,
         title = hits.storyTitle ?: hits.title ?: "-",
         authorAndCreatedAt = parseAuthorPlusDateAgo(hits.author, hits.createdAtI.toLong()),
         url = hits.storyUrl ?: "-"
