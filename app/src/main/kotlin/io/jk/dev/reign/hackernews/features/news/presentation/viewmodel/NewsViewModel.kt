@@ -22,6 +22,8 @@ class NewsViewModel(
 
     private var _state = MutableLiveData<NewsViewState>()
 
+    private var nPage: Int = 0
+
 
     private val errorHandler = CoroutineExceptionHandler { _, exception ->
         ui {
@@ -34,13 +36,29 @@ class NewsViewModel(
     fun getNews() {
         viewModelScope.launch(errorHandler) {
             io {
-                val news = newsUseCase.getNews()
+                val news = newsUseCase.getNews(nPage)
                 val items = news.map(newsModelMapper::map)
 
                 ui {
                     _state.value = NewsViewState.OnLoading(false)
                     _state.value = NewsViewState.Success(items)
                 }
+                nPage++
+            }
+        }
+    }
+
+    fun fetchNews() {
+        viewModelScope.launch(errorHandler) {
+            io {
+                val news = newsUseCase.getNews(nPage)
+                val items = news.map(newsModelMapper::map)
+
+                ui {
+                    _state.value = NewsViewState.OnLoading(false)
+                    _state.value = NewsViewState.Success(items)
+                }
+                nPage++
             }
         }
     }

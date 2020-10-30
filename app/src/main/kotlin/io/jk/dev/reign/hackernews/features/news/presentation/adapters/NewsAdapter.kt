@@ -20,8 +20,9 @@ class NewsAdapter(
     }
 
     fun clearAndAddAll(items: List<NewsItemModel>) {
-        mLst.clear()
-        mLst.addAll(items)
+        val newItems = items.minus(mLst)
+        mLst.addAll(newItems)
+        mLst.sortByDescending { it.createdAt }
         notifyDataSetChanged()
     }
 

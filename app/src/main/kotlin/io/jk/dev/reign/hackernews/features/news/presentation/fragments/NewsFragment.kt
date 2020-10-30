@@ -57,11 +57,20 @@ class NewsFragment : Fragment(), NewsAdapter.Listener {
 
     private fun initializeRecyclerView() {
         rvNews?.apply {
+            val mLayoutManager =LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager = mLayoutManager
             addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
             adapter = newsAdapter
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    if (mLayoutManager.findLastVisibleItemPosition() == mLayoutManager.itemCount.minus(1)) {
+                        newsViewModel.fetchNews()
+                    }
+                }
+            })
         }
     }
 

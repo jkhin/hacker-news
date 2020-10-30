@@ -7,8 +7,8 @@ class NewsCloudStore(
     private val hackerNewsApi: HackerNewsApi
 ) {
 
-    suspend fun searchNewsByDate(environment: String): Response {
-        return hackerNewsApi.getNewsByDate(environment)
+    suspend fun searchNewsByDate(nPage: Int, environment: String): Response {
+        return hackerNewsApi.getNewsByDate(nPage, environment)
     }
 
 }

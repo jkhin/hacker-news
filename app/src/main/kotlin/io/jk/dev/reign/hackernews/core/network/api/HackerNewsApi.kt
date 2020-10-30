@@ -8,6 +8,7 @@ interface HackerNewsApi {
 
     @GET("search_by_date")
     suspend fun getNewsByDate(
+        @Query("page") page: Int,
         @Query("query") environment: String
     ): Response
 

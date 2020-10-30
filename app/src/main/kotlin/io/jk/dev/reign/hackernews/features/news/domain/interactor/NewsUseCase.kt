@@ -11,7 +11,7 @@ class NewsUseCase(
         private const val ENVIRONMENT = "android"
     }
 
-    suspend fun getNews(): List<News> = newsRepository.getNewsByDate(ENVIRONMENT)
+    suspend fun getNews(nPage: Int = 0): List<News> = newsRepository.getNewsByDate(nPage, ENVIRONMENT)
 
     suspend fun removeNew(objectId: String) = newsRepository.removeNew(objectId)
 

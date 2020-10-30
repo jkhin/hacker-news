@@ -9,6 +9,7 @@ class NewsModelMapper {
     fun map(news: News) = NewsItemModel(
         objectId = news.objectId,
         title = news.storyTitle ?: news.title ?: "-",
+        createdAt = news.createdAt,
         authorAndCreatedAt = parseAuthorPlusDateAgo(news.author, news.createdAtI.toLong()),
         url = news.storyUrl ?: "-"
     )

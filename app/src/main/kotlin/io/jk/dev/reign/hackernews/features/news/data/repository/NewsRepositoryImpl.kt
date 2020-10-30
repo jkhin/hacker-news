@@ -16,9 +16,9 @@ class NewsRepositoryImpl(
     private val newsMapper: NewsMapper
 ) : NewsRepository {
 
-    override suspend fun getNewsByDate(environment: String): List<News> {
+    override suspend fun getNewsByDate(nPage: Int, environment: String): List<News> {
         return if (hasInternetConnection()) {
-            val response = newsCloudStore.searchNewsByDate(environment)
+            val response = newsCloudStore.searchNewsByDate(nPage, environment)
             val news = newsEntityMapper.map(response.hits)
             val newsStored = newsDataStore.getNewsStored()
             val nonNewsStored = mutableListOf<NewsEntity>()
