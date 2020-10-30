@@ -11,6 +11,31 @@
         android:label="home_fragment"
         tools:layout="@layout/fragment_news">
 
+        <action
+            android:id="@+id/action_homeFragment_to_WebFragment"
+            app:destination="@id/WebFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/WebFragment"
+        android:name="io.jk.dev.reign.hackernews.features.news.presentation.fragments.WebFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/fragment_web">
+
+        <action
+            android:id="@+id/action_WebFragment_to_homeFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/homeFragment" />
+
+        <argument
+            android:name="url"
+            app:argType="string"
+            app:nullable="false" />
+
+    </fragment>
+
 
 </navigation>

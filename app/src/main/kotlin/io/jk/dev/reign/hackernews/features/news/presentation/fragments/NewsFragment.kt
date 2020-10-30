@@ -1,12 +1,14 @@
 package io.jk.dev.reign.hackernews.features.news.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -99,12 +101,13 @@ class NewsFragment : Fragment(), NewsAdapter.Listener {
         newsViewModel.getNews()
     }
 
-    companion object {
-        fun newInstance() = NewsFragment()
-    }
-
-    override fun goToWebPage(url: String) {
-
+    override fun goToWebPage(url: String?) {
+        if (!url.isNullOrBlank() && Patterns.WEB_URL.matcher(url).matches()) {
+            val action = NewsFragmentDirections.actionHomeFragmentToWebFragment(url)
+            findNavController().navigate(action)
+        } else {
+            Toast.makeText(requireContext(), "The url format isn't correct!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun removeNews(objectId: String) {

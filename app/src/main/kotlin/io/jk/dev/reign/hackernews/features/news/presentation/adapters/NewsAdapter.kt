@@ -15,7 +15,7 @@ class NewsAdapter(
     private val mLst: MutableList<NewsItemModel> = mutableListOf()
 
     interface Listener {
-        fun goToWebPage(url: String)
+        fun goToWebPage(url: String?)
         fun removeNews(objectId: String)
     }
 
